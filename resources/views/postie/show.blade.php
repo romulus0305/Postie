@@ -20,7 +20,7 @@
 		<div class="blog-post">
 
 			<h2 class="blog-post-title">{{$post->title}}</h2>
-			<p class="blog-post-meta">{{$post->created_at}}<a href="#">{{$post->user->name}}</a></p>
+			<p class="blog-post-meta">{{$post->created_at}}&nbsp;&nbsp;<a href="#">{{$post->user->name}}</a></p>
 
 			<div>{{$post->body}}</div>
 		</div>

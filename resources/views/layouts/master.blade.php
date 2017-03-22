@@ -11,14 +11,14 @@
  
 
     <title>Postie Blog</title>
-<link href="/css/style.css" rel="stylesheet">
+
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-
+<link href="/css/style.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
    @yield('css')
@@ -31,6 +31,12 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+      #body{
+
+        margin-bottom: 100px;
+      }
+    </style>
   </head>
 
   <body>
@@ -39,28 +45,27 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" href="{{ route('postie.index') }}">Home</a>
-          <a class="blog-nav-item" href="#">About</a>
-           @if (Auth::check())
+         
+           @if (!Auth::guest())
            <a class="blog-nav-item" href="{{ route('postie.create') }}">Create New Post</a>
-           <a class="blog-nav-item pull-right" href="<a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+           <a class="blog-nav-item pull-right" <a href="{{route('logout') }}"onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">Logout</a>                                
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>                                         
            <a class="blog-nav-item pull-right" href="#"> {{ Auth::user()->name }}</a>
 
            @else
+            <a class="blog-nav-item pull-right" href="{{ route('register') }}">Register</a>
+            <span class="blog-nav-item pull-right">Or</span>
             <a class="blog-nav-item pull-right" href="{{ route('login') }}">Login</a>
-          @endif
-         
+           @endif
+            <a class="blog-nav-item" href="#">About</a>
         </nav>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container"  id="body">
 
       <div class="blog-header">
         @yield('header')
