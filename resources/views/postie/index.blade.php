@@ -22,7 +22,7 @@
 		<div class="blog-post">
 
 			<h2 class="blog-post-title"><a href="{{ route('postie.show',$post->id) }}">{{$post->title}}</a></h2>
-			<p class="blog-post-meta">{{$post->created_at}}&nbsp;&nbsp;<a href="{{ route('home') }}">{{$post->user->name}}</a></p>
+			<p class="blog-post-meta">{{$post->created_at}}&nbsp;&nbsp;<a href="#">{{$post->user->name}}</a></p>
 
 			<div>{{$post->body}}</div>
 		</div>

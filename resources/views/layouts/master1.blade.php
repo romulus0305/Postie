@@ -47,29 +47,13 @@
           <a class="blog-nav-item" href="{{ route('postie.index') }}">Home</a>
          
            @if (!Auth::guest())
-     
-      <div class="dropdown pull-right">
-          <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          {{ Auth::user()->name }} 
-            <span class="caret"></span>
-          </a>
-
-          <ul class="dropdown-menu" aria-labelledby="dLabel">
-            <li><a href="#">Profile</a></li>
-            <li><a  href="{{ route('postie.create') }}">Create New Post</a></li>
-                         <li role="separator" class="divider"></li>
-                          <li><a  href="{{route('logout') }}"onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">Logout</a>                                
-                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                  {{ csrf_field() }}
-                              </form>
-                          </li>
-          </ul>
-      </div>
-
-           
-                                                    
-          {{--  <a class="blog-nav-item pull-right" href="#"> {{ Auth::user()->name }}</a> --}}
+           <a class="blog-nav-item" href="{{ route('postie.create') }}">Create New Post</a>
+           <a class="blog-nav-item pull-right" <a href="{{route('logout') }}"onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">Logout</a>                                
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>                                         
+           <a class="blog-nav-item pull-right" href="#"> {{ Auth::user()->name }}</a>
 
            @else
             <a class="blog-nav-item pull-right" href="{{ route('register') }}">Register</a>
@@ -122,11 +106,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $(".dropdown-toggle").dropdown();
-});
-</script>
+   
     <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="/js/app.js"></script>
