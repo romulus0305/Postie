@@ -20,3 +20,4 @@ Route::get('/',['as'=>'postie.index','uses'=>'UserPostController@index']);
 Route::resource('/postie','UserPostController');
 
 
+
