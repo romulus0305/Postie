@@ -138,4 +138,16 @@ class UserPostController extends Controller
     {
         //
     }
+
+
+
+    // public function randPost()
+    // {
+    //      $postie = Post::randumPost();
+    //      return view('layouts.master',compact('postie'));
+    // }
+
+
+
+
 }

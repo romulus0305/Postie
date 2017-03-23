@@ -1,5 +1,5 @@
  <div class="sidebar-module sidebar-module-inset">
-            <h4> <a href=" {{ route('postie.show',$postie->id) }} ">{{$postie->title}}</a></h4>
+            <h4> <a href="{{ route('postie.show',$postie->id) }}">{{$postie->title}}</a></h4>
             <p>{{str_limit($postie->body,50)}}</p>
           </div>
           <div class="sidebar-module">

@@ -24,6 +24,7 @@ class Post extends Model
 	public static function randumPost()
 	{	//Ukupno postova
 		$max = count(self::select('id')->get());
+		//nasumicni broj
 		$id = rand(1,$max);
 		 
 		foreach (self::whereId($id)->get() as $randPost) {

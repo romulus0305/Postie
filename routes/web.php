@@ -26,3 +26,7 @@ Route::get('id',function ()
 
    echo $ids->title;
 });
+
+
+
+// Route::get('/master',['as'=>'master.rand','uses'=>'UserPostController@randPost']);

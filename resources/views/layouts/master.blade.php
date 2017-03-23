@@ -84,7 +84,9 @@
     <div class="container"  id="body">
 
       <div class="blog-header">
+
         @yield('header')
+      
       </div>
 
       <div class="row">
@@ -105,7 +107,10 @@
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
  @include('layouts.sidebar')
+{{-- @include('layouts.sidebar', ['postie',$postie]) --}}
+
         </div><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
