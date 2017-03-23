@@ -56,7 +56,23 @@ class UserPostController extends Controller
      */
     public function store(Request $request)
     {
-    //     return $user = Auth::user();
+        $user = Auth::user();
+
+        $inputs = [
+        'title'=>$request->title,
+        'body'=>$request->body
+        ];
+
+
+        $user->posts()->create($inputs);
+        return redirect('/');
+
+
+
+
+
+
+
     }
 
     /**

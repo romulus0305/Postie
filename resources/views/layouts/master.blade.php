@@ -44,7 +44,7 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="{{ route('postie.index') }}">Home</a>
+          <a class="blog-nav-item" href="{{ url('/') }}">Home</a>
          
            @if (!Auth::guest())
      
