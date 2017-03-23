@@ -14,15 +14,15 @@
 
 
 @section('main')
-	@if ($post)
+	@if ($postie)
 	
 
 		<div class="blog-post">
 
-			<h2 class="blog-post-title">{{$post->title}}</h2>
-			<p class="blog-post-meta">{{$post->created_at}}&nbsp;&nbsp;<a href="#">{{$post->user->name}}</a></p>
+			<h2 class="blog-post-title">{{$postie->title}}</h2>
+			<p class="blog-post-meta">{{$postie->created_at}}&nbsp;&nbsp;<a href="#">{{$postie->user->name}}</a></p>
 
-			<div>{{$post->body}}</div>
+			<div>{{$postie->body}}</div>
 		</div>
 
 		

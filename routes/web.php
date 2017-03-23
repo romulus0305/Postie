@@ -1,5 +1,5 @@
 <?php
-
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +19,10 @@ Route::get('/',['as'=>'postie.index','uses'=>'UserPostController@index']);
 
 Route::resource('/postie','UserPostController');
 
+//Funkcija  za randumpost koji ce da izlazi na sidebaru
+Route::get('id',function ()
+{
+    $ids =  Post::randumPost();
 
-
+   echo $ids->title;
+});

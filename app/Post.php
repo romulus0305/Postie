@@ -20,6 +20,24 @@ class Post extends Model
 
 
 
+	//Uzima randum post iz baze 
+	public static function randumPost()
+	{	//Ukupno postova
+		$max = count(self::select('id')->get());
+		$id = rand(1,$max);
+		 
+		foreach (self::whereId($id)->get() as $randPost) {
+		 	return $randPost;
+		 }
+
+	}
+
+
+
+
+
+
+
 
    public function user()
    {

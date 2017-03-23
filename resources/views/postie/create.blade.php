@@ -8,7 +8,7 @@
 
 @section('header')
 	<h1 class="blog-title">Create new Postie Blog</h1>
-    <p class="lead blog-description">Write something amazing</p>
+    <p class="lead blog-description">Write something amazing!</p>
 @stop
 
 

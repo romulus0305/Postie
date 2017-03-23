@@ -32,10 +32,13 @@ class UserPostController extends Controller
      */
     public function index()
     {
-
+        //Randum post iz modela ali je proble kada se ode na drtugu strano
+        //zato sto je inkludovan sidebar u layouts.master
+        $postie = Post::randumPost();
         $posts = Post::all();
+      
      
-        return view('postie.index',compact('posts'));
+        return view('postie.index',compact('posts','postie'));
     }
 
     /**
@@ -81,18 +84,24 @@ class UserPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    //Route-Model Binding
+    //Bitno je da wildcard u ruti ima isti naziv
+    //kao i promenjiva u parametrima funkcije
+    public function show(Post $postie)
     {
-         $post = Post::find($id);
+
+
+ 
+        //  $post = Post::find($id);
        
 
-        if (!$post) 
+        if (!$postie) 
         {
             return redirect()->back();    
         }
         else
         {
-            return view('postie.show',compact('post'));
+            return view('postie.show',compact('postie'));
         }
     }
 
