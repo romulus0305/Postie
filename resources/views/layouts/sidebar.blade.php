@@ -1,6 +1,6 @@
  <div class="sidebar-module sidebar-module-inset">
-            <h4> <a href="{{ route('postie.show',$postie->id) }}">{{$postie->title}}</a></h4>
-            <p>{{str_limit($postie->body,50)}}</p>
+            <h4> <a href="{{ route('postie.show',$randPost->id) }}">{{$randPost->title}}</a></h4>
+            <p>{{str_limit($randPost->body,50)}}</p>
           </div>
           <div class="sidebar-module">
             <h4>Archives</h4>
