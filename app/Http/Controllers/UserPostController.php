@@ -7,6 +7,7 @@ use App\User;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\PostEditRequest;
 class UserPostController extends Controller
 {
 
@@ -32,10 +33,8 @@ class UserPostController extends Controller
      */
     public function index()
     {
-        //Randum post iz modela ali je proble kada se ode na drtugu strano
-        //zato sto je inkludovan sidebar u layouts.master
-        $postie = Post::randumPost();
-        $posts = Post::all();
+        
+        $posts = Post::orderBy('created_at','desc')->get();
       
      
         return view('postie.index',compact('posts','postie'));
@@ -93,7 +92,9 @@ class UserPostController extends Controller
 
  
         //  $post = Post::find($id);
-       
+        // $userId = Auth::user()->id;
+        $isOwner = Post::checkOwner($postie->id);
+
 
         if (!$postie) 
         {
@@ -101,7 +102,7 @@ class UserPostController extends Controller
         }
         else
         {
-            return view('postie.show',compact('postie'));
+            return view('postie.show',compact('postie','isOwner'));
         }
     }
 
@@ -113,7 +114,8 @@ class UserPostController extends Controller
      */
     public function edit($id)
     {
-        return view('postie.edit');
+        $post = Post::find($id);
+        return view('postie.edit',compact('post'));
     }
 
     /**
@@ -123,9 +125,18 @@ class UserPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostEditRequest $request, $id)
     {
-        //
+       
+       $inputs = [
+        'title'=>$request->title,
+        'body'=>$request->body
+        ];
+        $post = Auth::user()->posts()->whereId($id)->first();
+        $post->update($inputs);
+        return redirect(route('postie.show',$id));
+         
+
     }
 
     /**
@@ -136,18 +147,13 @@ class UserPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Post::find($id)->delete();
+       return redirect('/');
     }
 
 
 
-    // public function randPost()
-    // {
-    //      $postie = Post::randumPost();
-    //      return view('layouts.master',compact('postie'));
-    // }
-
-
+    
 
 
 }

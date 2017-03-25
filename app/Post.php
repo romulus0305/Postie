@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -20,19 +21,20 @@ class Post extends Model
 
 
 
-	//Uzima randum post iz baze 
-	public static function randumPost()
-	{	//Ukupno postova
-		$max = count(self::select('id')->get());
-		//nasumicni broj
-		$id = rand(1,$max);
-		 
-		foreach (self::whereId($id)->get() as $randPost) {
-		 	return $randPost;
-		 }
+	
 
+public static function checkOwner($postId)
+{
+	$post = self::find($postId);
+
+// dd($post);
+
+
+	if ($post->user_id == Auth::user()->id) {
+		return true;
 	}
-
+	return false;
+}
 
 
 

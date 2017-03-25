@@ -1,5 +1,6 @@
 <?php
 use App\Post;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,13 +21,10 @@ Route::get('/',['as'=>'postie.index','uses'=>'UserPostController@index']);
 Route::resource('/postie','UserPostController');
 
 //Funkcija  za randumpost koji ce da izlazi na sidebaru
-Route::get('id',function ()
+
+
+
+Route::get('test/{id}',function (Request $request)
 {
-    $ids =  Post::randumPost();
-
-   echo $ids->title;
+	return $request->method();
 });
-
-
-
-// Route::get('/master',['as'=>'master.rand','uses'=>'UserPostController@randPost']);
