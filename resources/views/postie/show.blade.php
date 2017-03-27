@@ -25,7 +25,7 @@
 			<h2 class="blog-post-title">{{$postie->title}}</h2>
 			<p class="blog-post-meta">{{$postie->created_at}}&nbsp;&nbsp;<a href="#">{{$postie->user->name}}</a></p> 
 
-			<div>{{$postie->body}}</div>
+			<div style="white-space: pre-wrap;">{{($postie->body)}}</div>
 		</div>
 
 		

@@ -8,6 +8,7 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\PostEditRequest;
+use App\Http\Requests\OwnerEditRequest;
 class UserPostController extends Controller
 {
 
@@ -34,10 +35,11 @@ class UserPostController extends Controller
     public function index()
     {
         
-        $posts = Post::orderBy('created_at','desc')->get();
+     $posts = Post::orderBy('created_at','desc')->paginate(3);
+
       
      
-        return view('postie.index',compact('posts','postie'));
+        return view('postie.index',compact('posts'));
     }
 
     /**
@@ -86,14 +88,14 @@ class UserPostController extends Controller
     //Route-Model Binding
     //Bitno je da wildcard u ruti ima isti naziv
     //kao i promenjiva u parametrima funkcije
-    public function show(Post $postie)
+    public function show($id)
     {
 
 
  
-        //  $post = Post::find($id);
-        // $userId = Auth::user()->id;
-        $isOwner = Post::checkOwner($postie->id);
+        $postie = Post::find($id);
+        $userId = Auth::user()->id;
+        
 
 
         if (!$postie) 
@@ -102,6 +104,7 @@ class UserPostController extends Controller
         }
         else
         {
+            $isOwner = Post::checkOwner($postie->id);
             return view('postie.show',compact('postie','isOwner'));
         }
     }
@@ -112,10 +115,24 @@ class UserPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PostEditRequest $request, $id)
     {
-        $post = Post::find($id);
-        return view('postie.edit',compact('post'));
+
+
+        if (!$post = Post::find($id)) 
+        {
+            return redirect()->back();    
+        }
+        else
+        {
+            return view('postie.edit',compact('post'));
+        }
+
+
+
+
+       
+        
     }
 
     /**
@@ -125,9 +142,9 @@ class UserPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostEditRequest $request, $id)
+    public function update(OwnerEditRequest $request, $id)
     {
-       
+       // dd($id);
        $inputs = [
         'title'=>$request->title,
         'body'=>$request->body
@@ -145,7 +162,7 @@ class UserPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PostEditRequest $request, $id)
     {
        Post::find($id)->delete();
        return redirect('/');

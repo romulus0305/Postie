@@ -25,6 +25,7 @@ https://laracasts.com/discuss/channels/general-discussion/laravel-5-middleware-o
 
 @section('main')
 
+@include('includes.errors')
 
 
 	<div class="row">
@@ -69,6 +70,6 @@ https://laracasts.com/discuss/channels/general-discussion/laravel-5-middleware-o
 
 	</div>
 	
-	@include('includes.errors')
+	
 
 @stop

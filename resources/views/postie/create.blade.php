@@ -18,7 +18,7 @@
 
 @section('main')
 	
-
+@include('includes.errors')
 
 	
 	
@@ -51,6 +51,6 @@
 	{!! Form::close() !!}
 	</div>
 	
-	@include('includes.errors')
+	
 	
 @stop

@@ -24,7 +24,7 @@
 			<h2 class="blog-post-title"><a href="{{ route('postie.show',$post->id) }}">{{$post->title}}</a></h2>
 			<p class="blog-post-meta">{{$post->created_at}}&nbsp;&nbsp;<a href="#">{{$post->user->name}}</a></p>
 
-			<div>{{str_limit($post->body,150)}}</div>
+			<div>{{str_limit($post->body,350)}}</div>
 		</div>
 
 		@endforeach
@@ -34,5 +34,10 @@
 	
 	</div>
 	@endif
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-5">
+			{{$posts->render()}}
+		</div>
+	</div>
 @stop
 

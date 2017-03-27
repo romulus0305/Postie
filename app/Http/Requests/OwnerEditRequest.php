@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Requests;
+
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostEditRequest extends FormRequest
+class OwnerEditRequest extends FormRequest
 {
-
-
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -17,9 +15,7 @@ class PostEditRequest extends FormRequest
      */
     public function authorize()
     {
-
-        return Post::checkOwner($this->route('postie'));
-        
+       return Post::checkOwner($this->route('postie'));
     }
 
     /**
@@ -29,14 +25,12 @@ class PostEditRequest extends FormRequest
      */
     public function rules()
     {
-         return [
-            
+        return [
+            'title'=>'required|min:3',
+            'body'=>'required|min:20',
         ];
     }
 
 
-    public function forbiddenResponse()
-    {
-        return redirect()->back();
-    }
+    
 }
