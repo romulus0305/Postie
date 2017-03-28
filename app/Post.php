@@ -41,7 +41,6 @@ public static function checkOwner($postId)
 
 
 
-
    public function user()
    {
    
@@ -50,4 +49,27 @@ public static function checkOwner($postId)
    
    
    }
+
+
+
+
+
+public static function archives()
+{
+	return	self::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')
+	        ->groupBy('year','month')
+	        ->orderByRaw('min(created_at)desc')
+	        ->get()
+	        ->toArray();
+
+}
+
+
+
+
+
+
+
+
+
 }

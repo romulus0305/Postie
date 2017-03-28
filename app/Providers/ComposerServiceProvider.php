@@ -19,6 +19,7 @@ class ComposerServiceProvider extends ServiceProvider
         
        
          View::share('randPost',Post::inRandomOrder()->first());
+         View::share('archives',Post::archives());
 
 
     }

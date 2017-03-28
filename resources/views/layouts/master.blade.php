@@ -45,7 +45,8 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" href="{{ url('/') }}">Home</a>
-         
+          <a class="blog-nav-item" href="{{ route('postie.about') }}">About Postie</a>
+
            @if (!Auth::guest())
      
       <div class="dropdown pull-right">
@@ -76,7 +77,7 @@
             <span class="blog-nav-item pull-right">Or</span>
             <a class="blog-nav-item pull-right" href="{{ route('login') }}">Login</a>
            @endif
-            <a class="blog-nav-item" href="#">About</a>
+            
         </nav>
       </div>
     </div>
@@ -92,18 +93,10 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main">
-
-       
-          
-            
+  
             @yield('main')
 
-          
-
-          
-
-          
-
+        
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\PostEditRequest;
 use App\Http\Requests\OwnerEditRequest;
+use Carbon\Carbon;
 class UserPostController extends Controller
 {
 
@@ -19,7 +20,7 @@ class UserPostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth',['except'=>'index']);
+        $this->middleware('auth',['except'=>['index','about','archives']]);
     }
 
 
@@ -34,12 +35,38 @@ class UserPostController extends Controller
      */
     public function index()
     {
-        
-     $posts = Post::orderBy('created_at','desc')->paginate(3);
 
+        $posts = Post::latest();
+
+        // if ($month = request('month')) {
+
+
+        //      $posts->whereMonth('created_at', Carbon::parse($month)->month);
+             
+        // }
+
+        // if ($year = request('year')) {
+
+            
+        //      $posts->whereYear('created_at',$year);
+          
+        // }
+
+
+        $posts= $posts->paginate(3);
+ 
+        // $archives = Post::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')
+        // ->groupBy('year','month')
+        // ->orderByRaw('min(created_at)desc')
+        // ->get()
+        // ->toArray();
+
+        
+     // $posts = Post::orderBy('created_at','desc')
+       
       
      
-        return view('postie.index',compact('posts'));
+        return view('postie.index',compact('posts','archives'));
     }
 
     /**
@@ -91,8 +118,6 @@ class UserPostController extends Controller
     public function show($id)
     {
 
-
- 
         $postie = Post::find($id);
         $userId = Auth::user()->id;
         
@@ -169,8 +194,60 @@ class UserPostController extends Controller
     }
 
 
+    public function about()
+    {
+        return view('postie.about');
+    }
+
 
     
+    public function archives()
+    {
+        $posts = Post::latest();
+
+        if ($month = request('month')) {
+
+
+             $posts->whereMonth('created_at', Carbon::parse($month)->month);
+             
+        }
+
+        if ($year = request('year')) {
+
+            
+             $posts->whereYear('created_at',$year);
+          
+        }
+
+
+        $posts= $posts->paginate(3);
+
+
+
+        return view('postie.archives',compact('posts'));
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

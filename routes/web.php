@@ -14,17 +14,30 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
+
+
+
+Route::get('/postie/about',['as'=>'postie.about','uses'=>'UserPostController@about']);
 
 Route::get('/',['as'=>'postie.index','uses'=>'UserPostController@index']);
 
+Route::get('/postie/archive',['as'=>'postie.archive','uses'=>'UserPostController@archives']);
+
+//Sve sto stavim ispod terace na login
 Route::resource('/postie','UserPostController');
 
-//Funkcija  za randumpost koji ce da izlazi na sidebaru
 
 
 
-Route::get('test/{id}',function (Request $request)
+
+Route::get('/test',function ()
 {
-	return $request->method();
+	
+// $archive = Post::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')->groupBy('year','month')->get()->toArray();
+
+//    foreach ($archive as $my) {
+//    echo $my['month'] . " " .  $my['year'] . " #" . $my['published'] . "<br>";
+//    }
 });
+

@@ -6,7 +6,7 @@
 
 
 @section('header')
-	<h2>Edit Post <i>{{$post->title}}</i></h2>
+	<h2>Edit Post <u>{{$post->title}}</u></h2>
     <p class="lead blog-description">Here you can edit your post.</p>
 @stop
 
