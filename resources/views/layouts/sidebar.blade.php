@@ -5,11 +5,11 @@
           <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
-            @foreach ($archives as $archive)
+            @foreach ($archives as $arc)
               
-              <li><a href="/postie/archive?month={{ $archive['month'] }}&year={{ $archive['year'] }}">
+              <li><a href="/postie/archive?month={{ $arc['month'] }}&year={{ $arc['year'] }}">
 
-              {{ $archive['month'] . ' ' . $archive['year']}}
+              {{ $arc['month'] . ' ' . $arc['year']}}
 
               </a></li>
 

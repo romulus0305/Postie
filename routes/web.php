@@ -34,10 +34,6 @@ Route::resource('/postie','UserPostController');
 Route::get('/test',function ()
 {
 	
-// $archive = Post::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')->groupBy('year','month')->get()->toArray();
 
-//    foreach ($archive as $my) {
-//    echo $my['month'] . " " .  $my['year'] . " #" . $my['published'] . "<br>";
-//    }
 });
 

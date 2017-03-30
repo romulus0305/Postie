@@ -207,15 +207,20 @@ class UserPostController extends Controller
 
         if ($month = request('month')) {
 
+                // dd( Carbon::parse($month) );
 
-             $posts->whereMonth('created_at', Carbon::parse($month)->month);
+             // $posts->whereMonth('created_at', Carbon::parse($month)->month);
+            
+// dd($mont);
+            $mont = date_parse($month);
+            $posts->whereMonth('created_at','=',$mont['month']);
              
         }
 
         if ($year = request('year')) {
 
             
-             $posts->whereYear('created_at',$year);
+             $posts->whereYear('created_at','=',$year);
           
         }
 
