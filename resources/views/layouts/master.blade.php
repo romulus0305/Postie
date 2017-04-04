@@ -44,23 +44,23 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="{{ url('/') }}">Home</a>
-          <a class="blog-nav-item" href="{{ route('postie.about') }}">About Postie</a>
+          <a class="blog-nav-item" href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
+          <a class="blog-nav-item" href="{{ route('postie.about') }}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;&nbsp;&nbsp;About Postie</a>
 
            @if (!Auth::guest())
      
       <div class="dropdown pull-right">
-          <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in As&nbsp;&nbsp;
           {{ Auth::user()->name }} 
             <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu" aria-labelledby="dLabel">
-            <li><a href="#">Profile</a></li>
-            <li><a  href="{{ route('postie.create') }}">Create New Post</a></li>
+            <li><a href="{{ route('user.index',Auth::user()->id) }}"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;Profile</a></li>
+            <li><a  href="{{ route('postie.create') }}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;&nbsp;New Post</a></li>
                          <li role="separator" class="divider"></li>
                           <li><a  href="{{route('logout') }}"onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">Logout</a>                                
+                              document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>                                
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                   {{ csrf_field() }}
                               </form>
@@ -73,9 +73,9 @@
           {{--  <a class="blog-nav-item pull-right" href="#"> {{ Auth::user()->name }}</a> --}}
 
            @else
-            <a class="blog-nav-item pull-right" href="{{ route('register') }}">Register</a>
+            <a class="blog-nav-item pull-right" href="{{ route('register') }}"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;&nbsp;&nbsp;Register</a>
             <span class="blog-nav-item pull-right">Or</span>
-            <a class="blog-nav-item pull-right" href="{{ route('login') }}">Login</a>
+            <a class="blog-nav-item pull-right" href="{{ route('login') }}"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;Login</a>
            @endif
             
         </nav>

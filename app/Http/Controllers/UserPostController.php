@@ -38,19 +38,19 @@ class UserPostController extends Controller
 
         $posts = Post::latest();
 
-        // if ($month = request('month')) {
+        if ($month = request('month')) {
 
-
-        //      $posts->whereMonth('created_at', Carbon::parse($month)->month);
+            $monthNum = date_parse($month);
+            $posts->whereMonth('created_at','=',$monthNum['month']);
              
-        // }
+        }
 
-        // if ($year = request('year')) {
+        if ($year = request('year')) {
 
             
-        //      $posts->whereYear('created_at',$year);
+             $posts->whereYear('created_at','=',$year);
           
-        // }
+        }
 
 
         $posts= $posts->paginate(3);
@@ -66,7 +66,7 @@ class UserPostController extends Controller
        
       
      
-        return view('postie.index',compact('posts','archives'));
+        return view('postie.index',compact('posts'));
     }
 
     /**
@@ -82,12 +82,15 @@ class UserPostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\CreatePostRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePostRequest $request)
     {
-        $user = Auth::user();
+
+
+        $user = $request->user();
+        // $user = Auth::user();
 
         $inputs = [
         'title'=>$request->title,
@@ -107,19 +110,22 @@ class UserPostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified post and edit button 
+     * if user has ownership
      *
      * @param  int  $id
+     * @param  obj  $postie
+     * @param  int  $userId
+     * @param  bool $isOwner 
      * @return \Illuminate\Http\Response
      */
-    //Route-Model Binding
-    //Bitno je da wildcard u ruti ima isti naziv
-    //kao i promenjiva u parametrima funkcije
+    
     public function show($id)
     {
 
         $postie = Post::find($id);
         $userId = Auth::user()->id;
+
         
 
 
@@ -130,8 +136,17 @@ class UserPostController extends Controller
         else
         {
             $isOwner = Post::checkOwner($postie->id);
+            // var_dump($isOwner);
             return view('postie.show',compact('postie','isOwner'));
         }
+
+
+
+
+        
+
+
+
     }
 
     /**
@@ -205,17 +220,17 @@ class UserPostController extends Controller
     {
         $posts = Post::latest();
 
-        if ($month = request('month')) {
+        if ($month =date_parse(request('month'))) {
 
 
-             $posts->whereMonth('created_at', Carbon::parse($month)->month);
+             $posts->whereMonth('created_at','=',$month['month']);
              
         }
 
         if ($year = request('year')) {
 
             
-             $posts->whereYear('created_at',$year);
+             $posts->whereYear('created_at','=',$year);
           
         }
 

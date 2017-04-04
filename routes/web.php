@@ -1,6 +1,7 @@
 <?php
 use App\Post;
 use Illuminate\Http\Request;
+use App\Mail\PostieMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,18 +15,26 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index');
-
-
-
 Route::get('/postie/about',['as'=>'postie.about','uses'=>'UserPostController@about']);
-
 Route::get('/',['as'=>'postie.index','uses'=>'UserPostController@index']);
-
 Route::get('/postie/archive',['as'=>'postie.archive','uses'=>'UserPostController@archives']);
-
-//Sve sto stavim ispod terace na login
 Route::resource('/postie','UserPostController');
+
+
+Route::get('/user/{id}',['as'=>'user.index','uses'=>'UserController@index']);
+
+
+
+
+//Slanje maila
+Route::get('/mail', function () {
+    // send an email to "batman@batcave.io"
+    Mail::to('fazlic.mr.goran@gmail.com')->send(new PostieMail);
+
+    return view('welcome');
+});
+
+
 
 
 
