@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\PostEditRequest;
@@ -123,21 +124,35 @@ class UserPostController extends Controller
     public function show($id)
     {
 
-        $postie = Post::find($id);
-        $userId = Auth::user()->id;
+        $data['post'] = Post::find($id);
+        $comments = $data['post']->comments()->latest()->get();
+
+        // $userId = Auth::user()->id;
 
         
 
 
-        if (!$postie) 
+        // if (!$postie) 
+        // {
+        //     return redirect()->back();    
+        // }
+        // else
+        // {
+        //     $isOwner = Post::checkOwner($postie->id);
+        //     // var_dump($isOwner);
+        //     return view('postie.show',compact('postie','isOwner'));
+        // }
+
+
+        if (!$data['post']) 
         {
             return redirect()->back();    
         }
         else
         {
-            $isOwner = Post::checkOwner($postie->id);
+            $data['edit_button'] = Post::checkOwner($data['post']->id);
             // var_dump($isOwner);
-            return view('postie.show',compact('postie','isOwner'));
+            return view('postie.show',compact('data'));
         }
 
 

@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">404</div>
+                <div class="title">This page is not Postie page 404</div>
             </div>
         </div>
     </body>

@@ -20,7 +20,7 @@
 
 <link href="/css/style.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
    @yield('css')

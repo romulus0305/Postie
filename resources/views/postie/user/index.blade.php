@@ -5,7 +5,8 @@
 
 
 @section('css')
-	<link href="/css/postie.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+<link href="/css/postie.css" rel="stylesheet">
 @stop
 
 

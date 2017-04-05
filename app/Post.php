@@ -23,50 +23,53 @@ class Post extends Model
 
 	
 
-public static function checkOwner($postId)
-{
-	$post = self::find($postId);
+		public static function checkOwner($postId)
+		{
+			$post = self::find($postId);
 
-// dd($post);
-
-
-	if ($post->user_id == Auth::user()->id) {
-		return true;
-	}
-	return false;
-}
+		// dd($post);
 
 
-
-
-
-
-   public function user()
-   {
-   
-   
-   	return $this->belongsTo('App\User');
-   
-   
-   }
+			if ($post->user_id == Auth::user()->id) {
+				return true;
+			}
+			return false;
+		}
 
 
 
 
 
-public static function archives()
-{
-	return	self::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')
-	        ->groupBy('year','month')
-	        ->orderByRaw('min(created_at)desc')
-	        ->get()
-	        ->toArray();
 
-}
-
-
+	   public function user()
+	   {
+	   
+	   
+	   	return $this->belongsTo('App\User');
+	   
+	   
+	   }
 
 
+
+
+
+		public static function archives()
+		{
+			return	self::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')
+			        ->groupBy('year','month')
+			        ->orderByRaw('min(created_at)desc')
+			        ->get()
+			        ->toArray();
+
+		}
+
+
+
+		public function comments()
+		{
+			return $this->hasMany('App\Comment');
+		}
 
 
 
