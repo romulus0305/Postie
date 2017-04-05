@@ -4,7 +4,9 @@
 
 
 
-
+@section('css')
+	<link href="/css/postie.css" rel="stylesheet">
+@stop
 
 
 
@@ -63,7 +65,7 @@
     	@foreach ($data['users_posts'] as $post)
     		<div class="panel panel-default">
 			  <div class="panel-body">
-			    <h3><a href="{{ route('postie.show',$post->id) }}">{{$post->title}}</a></h3>
+			    <h3 id="profileName"><a href="{{ route('postie.show',$post->id) }}">{{$post->title}}</a></h3>
 			    <div class="lead text-justify">
 			    	{{str_limit($post->body,220)}}
 			    </div>
