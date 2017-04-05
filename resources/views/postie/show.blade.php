@@ -23,7 +23,7 @@
 		<div class="blog-post">
 
 			<h2 class="blog-post-title">{{$postie->title}}</h2>
-			<p class="blog-post-meta">{{$postie->created_at}}&nbsp;&nbsp;<a href="{{ route('user.index',$postie->user->id) }}">{{$postie->user->name}}</a></p> 
+			<p class="blog-post-meta">{{$postie->created_at->format('l jS \\of F Y')}}&nbsp;&nbsp;<a href="{{ route('user.index',$postie->user->id) }}">{{$postie->user->name}}</a></p> 
 
 			<div style="white-space: pre-wrap;">{{($postie->body)}}</div>
 		</div>

@@ -50,7 +50,7 @@
            @if (!Auth::guest())
      
       <div class="dropdown pull-right">
-          <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in As&nbsp;&nbsp;
+          <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged in As&nbsp;&nbsp;
           {{ Auth::user()->name }} 
             <span class="caret"></span>
           </a>
@@ -127,6 +127,6 @@ $(document).ready(function(){
 </script>
     <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="/js/app.js"></script>
+{{-- <script src="/js/app.js"></script> --}}
   </body>
 </html>
