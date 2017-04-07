@@ -1,5 +1,7 @@
 <?php
 use App\Post;
+Use App\User;
+Use App\Comment;
 use Illuminate\Http\Request;
 use App\Mail\PostieMail;
 /*
@@ -44,11 +46,41 @@ Route::get('/mail', function () {
 
 Route::get('/test',function ()
 {
-	
-// $archive = Post::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')->groupBy('year','month')->get()->toArray();
 
-//    foreach ($archive as $my) {
-//    echo $my['month'] . " " .  $my['year'] . " #" . $my['published'] . "<br>";
-//    }
+
+/* 
+
+
+Sta se ovde desava?
+Ovako...
+$user - kog izaberem
+vraca sa posta izabranog $user-a
+id - komentara 
+id_post-a usera
+body - komentare
+user_name - imena korisnika koji su komentarisali
+
+
+
+*/
+
+
+
+
+	
+$user = User::find('94');
+// dd($user->name);
+
+foreach ($user->comment as $user) {
+echo $user->id . "<br>";	
+echo $user->post_id . "<br>";
+echo $user->body. "<br>";
+echo $user->user_name. "<br>";
+echo "<hr>";
+
+	
+}
+
+
 });
 

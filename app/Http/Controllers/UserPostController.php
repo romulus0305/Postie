@@ -11,6 +11,7 @@ use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\PostEditRequest;
 use App\Http\Requests\OwnerEditRequest;
 use Carbon\Carbon;
+use App\Comment;
 class UserPostController extends Controller
 {
 
@@ -124,45 +125,52 @@ class UserPostController extends Controller
     public function show($id)
     {
 
-        $data['post'] = Post::find($id);
-        $comments = $data['post']->comments()->latest()->get();
-
-        // $userId = Auth::user()->id;
-
-        
-
-
-        // if (!$postie) 
-        // {
-        //     return redirect()->back();    
-        // }
-        // else
-        // {
-        //     $isOwner = Post::checkOwner($postie->id);
-        //     // var_dump($isOwner);
-        //     return view('postie.show',compact('postie','isOwner'));
-        // }
-
-
-        if (!$data['post']) 
+        if (!$data['post'] = Post::find($id)) 
         {
             return redirect()->back();    
         }
         else
         {
+
+
+            $data['comments'] = $data['post']->comments()->latest()->get();
+            
+            
+
+
+
+
+
+
+
+
+
+
+
             $data['edit_button'] = Post::checkOwner($data['post']->id);
-            // var_dump($isOwner);
             return view('postie.show',compact('data'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
 
-
-
-        
-
-
-
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

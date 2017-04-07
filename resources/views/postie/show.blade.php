@@ -41,7 +41,7 @@
 				
 				</div>
 				
-				{{ Form::hidden('user_name',Auth::user()->name) }}
+				
 				{{ Form::hidden('post_id',$data['post']->id) }}
 				<div class="form-group">
 				
@@ -54,18 +54,24 @@
 				{!! Form::close() !!}
 				
 				</div>
-					
-					<div>
+					@if ($data['comments'])
 						
-						<span class="label label-primary">Goran</span>
-						<p>Pharetra sociosqu eleifend adipiscing est nec metus ullamcorper.</p>
-					</div>
-					
+						@foreach ($data['comments'] as $comment)
+							
+						
 					<div>
-						<hr>
-						<span class="label label-primary">Pera</span>
-						<p>Convallis scelerisque suspendisse eget parturient vestibulum consectetur suscipit scelerisque scelerisque vivamus ac aliquet porttitor ante nulla tellus dictumst sagittis duis lorem adipiscing vehicula.</p>
+					{{-- razmisli o ovome ispod i dodaj vreme komentara
+						{!!$id = $comment->post->user->whereName($comment->user_name)->get()!!}
+						{{$id[0]->id}} --}}
+						<span class="label label-primary">{{$comment->user_name}}</span>
+
+						<p> {{$comment->body}} </p>
 					</div>
+						@endforeach
+					@endif
+
+
+					
 				
 
 		</div> {{-- jumbotron --}}

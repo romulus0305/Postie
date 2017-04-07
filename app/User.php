@@ -39,4 +39,11 @@ public function posts()
 }
 
 
+    public function comment()
+   {
+     return $this->hasManyThrough('App\Comment','App\Post','user_id','post_id','id');
+   }
+
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
+use Illuminate\Support\Facades\Auth;
 class PostCommentController extends Controller
 {
     /**
@@ -40,7 +41,7 @@ class PostCommentController extends Controller
 
         'post_id'=>$request->post_id,
         'body'=>$request->comment,
-        'user_name'=>$request->user_name,
+        'user_name'=>Auth::user()->name,
 
         ];
 
