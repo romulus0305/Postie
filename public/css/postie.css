@@ -8,3 +8,9 @@ margin-top: 170px;
 
 	font-family: 'Crimson Text', serif;
 }
+
+#wordBreak{
+
+word-wrap:break-word !important;
+
+}

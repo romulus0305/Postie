@@ -24,7 +24,7 @@
 			<h2 class="blog-post-title"><a href="{{ route('postie.show',$post->id) }}">{{$post->title}}</a></h2>
 			<p class="blog-post-meta">{{$post->created_at->format('l jS \\of F Y')}}&nbsp;&nbsp;<a href="{{ route('user.index',$post->user->id) }}">{{$post->user->name}}</a></p>
 
-			<div>{{str_limit($post->body,350)}}</div>
+			<div id="wordBreak" ">{{str_limit($post->body,350)}}</div>
 		</div>
 
 		@endforeach

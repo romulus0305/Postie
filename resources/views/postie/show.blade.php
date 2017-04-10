@@ -43,6 +43,7 @@
 				
 				
 				{{ Form::hidden('post_id',$data['post']->id) }}
+
 				<div class="form-group">
 				
 				
@@ -63,7 +64,7 @@
 					{{-- razmisli o ovome ispod i dodaj vreme komentara
 						{!!$id = $comment->post->user->whereName($comment->user_name)->get()!!}
 						{{$id[0]->id}} --}}
-						<span class="label label-primary">{{$comment->user_name}}</span>
+						<span class="label label-info inverse"><a href=" {{ route('user.index',$comment->user->id) }} ">{{$comment->user->name}}</a></span>
 
 						<p> {{$comment->body}} </p>
 					</div>

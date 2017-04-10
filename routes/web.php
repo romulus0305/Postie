@@ -44,7 +44,7 @@ Route::get('/mail', function () {
 
 
 
-Route::get('/test',function ()
+Route::get('/hasManyTrough',function ()
 {
 
 
@@ -59,8 +59,9 @@ id - komentara
 id_post-a usera
 body - komentare
 user_name - imena korisnika koji su komentarisali
-
-
+--------------------------------------------------------------------------------------------------------
+Neodgovara mi zato sto ja hocu da dobijem id iz user modela a ova kombinacija 
+mi vraca sve komentare korisnika kosi u komentarisali odredjeni post tj post korisnika User::find('94');
 
 */
 

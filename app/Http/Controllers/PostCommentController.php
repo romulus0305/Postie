@@ -37,11 +37,12 @@ class PostCommentController extends Controller
     public function store(CommentRequest $request)
     {
 
+        
         $comment = [
 
         'post_id'=>$request->post_id,
         'body'=>$request->comment,
-        'user_name'=>Auth::user()->name,
+        'user_id'=>Auth::user()->id,
 
         ];
 

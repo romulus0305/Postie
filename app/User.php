@@ -39,9 +39,9 @@ public function posts()
 }
 
 
-    public function comment()
+    public function comments()
    {
-     return $this->hasManyThrough('App\Comment','App\Post','user_id','post_id','id');
+     return $this->hasMany('App\Comment');
    }
 
 

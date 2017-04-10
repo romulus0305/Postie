@@ -50,9 +50,9 @@
 		    <p><label>Registered:</label>&nbsp;&nbsp;{{$data['user']->created_at->format('l jS \\of F Y')}}</p>
 
 		    @if ($data['users_posts'])
-		    <p><label>Last Post:</label>&nbsp;&nbsp;<a href=" {{ route('postie.show',$data['users_last_post']->id) }} ">{{$data['users_last_post']->title}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{{$data['users_last_post']->created_at->diffForHumans()}}</p>
-		     <p><label>Number of posts:</label>&nbsp;&nbsp;{{count($data['users_posts'])}}</p>
-		     @else
+        <p><label>Number of posts:</label>&nbsp;&nbsp;{{count($data['users_posts'])}}</p>
+        <p><label>Last Post:</label>&nbsp;&nbsp;<a href="{{ route('postie.show',$data['users_last_post']->id) }}">{{$data['users_last_post']->title}}</a>&nbsp;&nbsp;&nbsp;&nbsp;{{$data['users_last_post']->created_at->diffForHumans()}}</p>
+		     		     @else
 		     <label>There is no information about Blogs, <a href="{{ route('postie.create') }}">Click here to write one!</a></label>
 		     @endif
 
@@ -67,7 +67,7 @@
     		<div class="panel panel-default">
 			  <div class="panel-body">
 			    <h3 id="profileName"><a href="{{ route('postie.show',$post->id) }}">{{$post->title}}</a></h3>
-			    <div class="lead text-justify">
+			    <div id="wordBreak" class="lead text-justify">
 			    	{{str_limit($post->body,220)}}
 			    </div>
 			  </div>
@@ -76,12 +76,19 @@
 	@else
 	<a href="{{ route('postie.create') }}">Write a Blog post!</a></label>	
 	@endif	
-    </div><!--/	allPosts-->
+</div><!--/	allPosts-->
 
 
   @if(Auth::id() == $data['user']->id ) <!--	edit-->
     <div role="tabpanel" class="tab-pane fade" id="edit">
-    <p>Edit</p>
+    <div class="col-sm-5">
+    @foreach ($data['comments'] as $data['comments'])
+     {{ $data['comments']->body }}
+    @endforeach
+    </div>
+    <div class="col-sm-5">
+      
+    </div>
     </div>
    @endif <!--/	edit-->
   
