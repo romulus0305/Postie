@@ -55,13 +55,13 @@
                     @endif	
                 </div><!--/	allPosts-->
                 @if(Auth::id() == $data['user']->id ) 
-                <div role="tabpanel" class="tab-pane fade" id="edit"><!--	edit-->
+                <div role="tabpanel" class="tab-pane fade" id="edit"><!--	Section edit-->
                     <div class="col-sm-5">
                         @foreach ($data['comments'] as $data['comments'])
                         {{ $data['comments']->body }}
                         @endforeach
                     </div>
-                </div><!--/	edit-->
+                </div><!--/	Section edit-->
                 @endif 
             </div> <!--/	Tab panes-->
     </div> {{-- panel-body --}}

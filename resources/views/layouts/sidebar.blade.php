@@ -1,4 +1,4 @@
- <div class="sidebar-module sidebar-module-inset">
+ <div class="sidebar-module sidebar-module-inset" id="wordBreak">
             <h4> <a href="{{ route('postie.show',$randPost->id) }}">{{$randPost->title}}</a></h4>
             <p>{{str_limit($randPost->body,50)}}</p>
           </div>
@@ -6,8 +6,7 @@
             <h4>Archives</h4>
             <ol class="list-unstyled">
             @foreach ($archives as $archive)
-              
-         {{--      <li><a href="/postie/archive?month={{ $archive['month'] }}&year={{ $archive['year'] }}"> --}}
+     
          <li><a href="/?month={{ $archive['month'] }}&year={{ $archive['year'] }}">
 
               {{ $archive['month'] . ' ' . $archive['year']}}
