@@ -29,15 +29,15 @@ class PostCommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Store a newly created comment in storage.
+     * @param arr $comment
+     * @param  \Illuminate\Http\Request\CommentRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CommentRequest $request)
     {
 
-        
+
         $comment = [
 
         'post_id'=>$request->post_id,
@@ -45,8 +45,6 @@ class PostCommentController extends Controller
         'user_id'=>Auth::user()->id,
 
         ];
-
-        // dd($comment);
 
          Comment::create($comment);
          return redirect()->back();

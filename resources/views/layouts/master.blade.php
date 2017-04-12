@@ -72,7 +72,7 @@
 
            
                                                     
-          {{--  <a class="blog-nav-item pull-right" href="#"> {{ Auth::user()->name }}</a> --}}
+         
 
            @else
             <a class="blog-nav-item pull-right" href="{{ route('register') }}"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;&nbsp;&nbsp;Register</a>
@@ -103,8 +103,8 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 
- @include('layouts.sidebar')
-{{-- @include('layouts.sidebar', ['postie',$postie]) --}}
+        @include('layouts.sidebar')
+
 
         </div><!-- /.blog-sidebar -->
 
@@ -118,17 +118,17 @@
     </footer>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+   
+    <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-    $(".dropdown-toggle").dropdown();
-});
+
+// $(document).ready(function(){
+//     $(".dropdown-toggle").dropdown();
+// });
 </script>
     <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-{{-- <script src="/js/app.js"></script> --}}
+
   </body>
 </html>

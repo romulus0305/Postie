@@ -18,8 +18,11 @@ class UserPostController extends Controller
 
 
 
-
-
+    /*
+     *
+     *  Middleware Auth
+     *
+     */
     public function __construct()
     {
         $this->middleware('auth',['except'=>['index','about','archives']]);
@@ -27,12 +30,11 @@ class UserPostController extends Controller
 
 
 
-
-
-
     /**
-     * Display a listing of the resource.
-     *
+     * @param obj $posts
+     * @param str $month
+     * @param arr $monthNum
+     * @param str $year
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -41,33 +43,16 @@ class UserPostController extends Controller
         $posts = Post::latest();
 
         if ($month = request('month')) {
-
             $monthNum = date_parse($month);
             $posts->whereMonth('created_at','=',$monthNum['month']);
-             
         }
 
         if ($year = request('year')) {
-
-            
              $posts->whereYear('created_at','=',$year);
-          
         }
 
-
         $posts= $posts->paginate(3);
- 
-        // $archives = Post::selectRaw('year(created_at) year,monthname(created_at) month,count(*) published')
-        // ->groupBy('year','month')
-        // ->orderByRaw('min(created_at)desc')
-        // ->get()
-        // ->toArray();
 
-        
-     // $posts = Post::orderBy('created_at','desc')
-       
-      
-     
         return view('postie.index',compact('posts'));
     }
 
@@ -83,87 +68,45 @@ class UserPostController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  App\Http\Requests\CreatePostRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePostRequest $request)
     {
 
-
         $user = $request->user();
-        // $user = Auth::user();
 
         $inputs = [
         'title'=>$request->title,
         'body'=>$request->body
         ];
 
-
         $user->posts()->create($inputs);
         return redirect('/');
-
-
-
-
-
-
 
     }
 
     /**
-     * Display the specified post and edit button 
+     * Display the specified post
      * if user has ownership
-     *
      * @param  int  $id
-     * @param  obj  $postie
-     * @param  int  $userId
-     * @param  bool $isOwner 
+     * @param  arr  $data
      * @return \Illuminate\Http\Response
      */
-    
+
     public function show($id)
     {
 
-        if (!$data['post'] = Post::find($id)) 
+        if (!$data['post'] = Post::find($id))
         {
-            return redirect()->back();    
+            return redirect()->back();
         }
         else
         {
 
-
             $data['comments'] = $data['post']->comments()->latest()->get();
-            
-            
-
-
-
-
-
-
-
-
-
-
-
             $data['edit_button'] = Post::checkOwner($data['post']->id);
             return view('postie.show',compact('data'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -174,7 +117,7 @@ class UserPostController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @param  \Illuminate\Http\Request\PostEditRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -182,9 +125,9 @@ class UserPostController extends Controller
     {
 
 
-        if (!$post = Post::find($id)) 
+        if (!$post = Post::find($id))
         {
-            return redirect()->back();    
+            return redirect()->back();
         }
         else
         {
@@ -192,16 +135,12 @@ class UserPostController extends Controller
         }
 
 
-
-
-       
-        
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\OwnerEditRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -215,13 +154,13 @@ class UserPostController extends Controller
         $post = Auth::user()->posts()->whereId($id)->first();
         $post->update($inputs);
         return redirect(route('postie.show',$id));
-         
+
 
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @param  \Illuminate\Http\Request\PostEditRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -232,40 +171,15 @@ class UserPostController extends Controller
     }
 
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function about()
     {
         return view('postie.about');
     }
 
 
-    
-    public function archives()
-    {
-        $posts = Post::latest();
-
-        if ($month =date_parse(request('month'))) {
-
-
-             $posts->whereMonth('created_at','=',$month['month']);
-             
-        }
-
-        if ($year = request('year')) {
-
-            
-             $posts->whereYear('created_at','=',$year);
-          
-        }
-
-
-        $posts= $posts->paginate(3);
-
-
-
-        return view('postie.archives',compact('posts'));
-
-
-    }
 
 
 
