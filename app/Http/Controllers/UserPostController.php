@@ -25,7 +25,7 @@ class UserPostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except'=>['index','about','archives']]);
+        $this->middleware('auth',['except'=>['index','archives','show']]);
     }
 
 
@@ -82,6 +82,7 @@ class UserPostController extends Controller
         ];
 
         $user->posts()->create($inputs);
+        session()->flash('created_post','Post '.$inputs['title'] . ' created!' );
         return redirect('/');
 
     }
@@ -106,6 +107,7 @@ class UserPostController extends Controller
 
             $data['comments'] = $data['post']->comments()->latest()->get();
             $data['edit_button'] = Post::checkOwner($data['post']->id);
+            
             return view('postie.show',compact('data'));
 
         }
@@ -153,6 +155,7 @@ class UserPostController extends Controller
         ];
         $post = Auth::user()->posts()->whereId($id)->first();
         $post->update($inputs);
+        session()->flash('post_update','Post Updated!');
         return redirect(route('postie.show',$id));
 
 
@@ -171,15 +174,7 @@ class UserPostController extends Controller
     }
 
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function about()
-    {
-        return view('postie.about');
-    }
-
-
+    
 
 
 

@@ -1,11 +1,6 @@
 @extends('layouts.master')
 
 
-@section('css')
- <link href="/css/postie.css" rel="stylesheet">
-@stop
-
-
 
 
 @section('main')
@@ -30,5 +25,24 @@
         {{ $posts->appends(['month'=>request('month'),'year'=>request('year')])->links() }}
     </div>
 </div>
+@if ($flash=session('created_post'))
+<div id="flash" class="alert alert-success animated bounceInDown" style="z-index: 10; position: absolute; top:40px; right: 50px;">
+    {{$flash}}
+</div>
+@endif
+@if ($flash=session('deleted_account'))
+<div id="flash" class="alert alert-info animated bounceInDown" style="z-index: 10; position: absolute; top:40px; right: 50px;">
+    {{$flash}}
+</div>
+@endif
 @stop
 
+
+
+
+
+@section('script')
+    <script type="text/javascript">
+        $('#flash').delay(500).fadeIn(250).delay(5000).fadeOut(500)
+    </script>
+@stop

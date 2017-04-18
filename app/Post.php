@@ -23,9 +23,14 @@ class Post extends Model
     {
         $post = self::find($postId);
 
+    if (Auth::user()) {
+       
+   
         if ($post->user_id == Auth::user()->id) {
             return true;
         }
+        return false;
+     }    
         return false;
     }
 
@@ -58,7 +63,7 @@ class Post extends Model
     }
 
 
-
+    
 
 
 }

@@ -287,7 +287,6 @@ class ComposerStaticInit8c618b79f4a55fc84c767e589613c702
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_17_173116_create_posts_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
-        'DodavanjeUserIdKoloneTabeliComments' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_204609_dodavanje_user_id_kolone_tabeli_comments.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',

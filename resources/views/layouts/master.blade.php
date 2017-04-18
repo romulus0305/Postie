@@ -16,6 +16,8 @@
         <link href="/css/style.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         @yield('css')
+        <link href="/css/postie.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -38,8 +40,8 @@
                     <a class="blog-nav-item" href="{{ route('postie.about') }}"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;&nbsp;&nbsp;About Postie</a>
                     @if (!Auth::guest())
                     <div class="dropdown pull-right">
-                        <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged in As&nbsp;&nbsp;
-                            {{ Auth::user()->name }}
+                        <a class="blog-nav-item" id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}
+                       
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -76,7 +78,7 @@
             </div><!-- /.row -->
         </div><!-- /.container -->
         <footer class="blog-footer">
-            <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            <p>Made with <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://www.facebook.com/" target="_blank">Xigo</a>.</p>
         </footer>
         <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -88,5 +90,6 @@
         </script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        @yield('script')
     </body>
 </html>

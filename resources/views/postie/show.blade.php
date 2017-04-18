@@ -4,28 +4,23 @@
 
 
 
-
-
-
-
-
-
-
-
-
 @section('main')
 @if ($data['post'])
-@if ($data['edit_button'])
-<button class="pull-right" onclick="window.location='{{ route("postie.edit",$data['post']->id) }}'">Edit</button>
 
-@endif
+
+
+
 <div class="jumbotron">
-
+    @if ($data['edit_button'])
+    <div id="edit_button">
+    <button onclick="window.location='{{ route("postie.edit",$data['post']->id) }}'">Update or Delete Post</button>
+    </div>
+    @endif
     <div class="blog-post"> <!--/   Post-->
 
         <h2 class="blog-post-title">{{$data['post']->title}}</h2>
         <p class="blog-post-meta">{{$data['post']->created_at->format('l jS \\of F Y')}}&nbsp;&nbsp;<a href="{{ route('user.index',$data['post']->user->id) }}">{{$data['post']->user->name}}</a></p>
-        <div style="white-space: pre-wrap;">{{($data['post']->body)}}</div>
+        <div id="wordBreak" style="white-space: pre-wrap;">{{($data['post']->body)}}</div>
 
     </div> <!--/   Post-->
     @include('includes.errors')

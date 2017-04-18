@@ -1,4 +1,7 @@
  <div class="sidebar-module sidebar-module-inset" id="wordBreak">
+ @if ($randPost&&$archives)
+   
+
             <h4> <a href="{{ route('postie.show',$randPost->id) }}">{{$randPost->title}}</a></h4>
             <p>{{str_limit($randPost->body,50)}}</p>
           </div>
@@ -14,6 +17,7 @@
               </a></li>
 
             @endforeach
+   @endif          
             </ol>
           </div>
           <div class="sidebar-module">
